@@ -1,1 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math Quiz</title>
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
+      background: #fff5f2;
+      font-family: Arial, sans-serif;
+    }
 
+    h1 {
+      color: #F4320B;
+      margin-bottom: 10px;
+    }
+
+    .quiz-box {
+      background: #fff;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    #question {
+      font-size: 24px;
+      font-weight: bold;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .options {
+      display: grid;
+      gap: 15px;
+    }
+
+    .option-btn {
+      background: white;
+      border: 2px solid #F4320B;
+      color: #F4320B;
+      padding: 12px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+      letter-spacing: 1px;
+    }
+
+    .option-btn:hover {
+      transform: scale(1.05);
+      background: #fff0ec;
+    }
+
+    #feedback {
+      margin-top: 15px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    #timer {
+      margin-top: 15px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #F4320B;
+    }
+  </style>
+</head>
+<body>
+  <h1>Math Quiz</h1>
+  <div class="quiz-box">
+    <div id="question">Loading...</div>
+    <div class="options" id="options"></div>
+    <div id="feedback"></div>
+    <div id="timer">Time: 10</div>
+  </div>
+
+  <script>
+    let correctAnswer;
+    let timer;
+    let timeLeft = 10;
+
+    function newQuestion() {
+      // generate random numbers + operator
+      const num1 = Math.floor(Math.random() * 10) + 1;
+      const num2 = Math.floor(Math.random() * 10) + 1;
+      const operators = ["+", "-", "*"];
+      const operator = operators[Math.floor(Math.random() * operators.length)];
+
+      switch(operator) {
+        case "+": correctAnswer = num1 + num2; break;
+        case "-": correctAnswer = num1 - num2; break;
+        case "*": correctAnswer = num1 * num2; break;
+      }
+
+      // show question
+      document.getElementById("question").textContent = `${num1} ${operator} ${num2} = ?`;
+
+      // generate options
+      let options = [correctAnswer];
+      while(options.length < 4) {
+        let wrong = Math.floor(Math.random() * 20) + 1;
+        if (!options.includes(wrong)) options.push(wrong);
+      }
+      // shuffle options
+      options.sort(() => Math.random() - 0.5);
+
+      // render options
+      const optionsDiv = document.getElementById("options");
+      optionsDiv.innerHTML = "";
+      options.forEach(opt => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.classList.add("option-btn");
+        btn.onclick = () => checkAnswer(opt);
+        optionsDiv.appendChild(btn);
+      });
+
+      // reset feedback + timer
+      document.getElementById("feedback").textContent = "";
+      resetTimer();
+    }
+
+    function checkAnswer(answer) {
+      if (answer === correctAnswer) {
+        document.getElementById("feedback").textContent = "✅ Correct!";
+        document.getElementById("feedback").style.color = "green";
+      } else {
+        document.getElementById("feedback").textContent = "❌ Wrong!";
+        document.getElementById("feedback").style.color = "red";
+      }
+      clearInterval(timer);
+      setTimeout(newQuestion, 1200);
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      timeLeft = 10;
+      document.getElementById("timer").textContent = "Time: " + timeLeft;
+      timer = setInterval(() => {
+        timeLeft--;
+        document.getElementById("timer").textContent = "Time: " + timeLeft;
+        if (timeLeft <= 0) {
+          clearInterval(timer);
+          document.getElementById("feedback").textContent = "⏰ Time's up!";
+          document.getElementById("feedback").style.color = "orange";
+          setTimeout(newQuestion, 1200);
+        }
+      }, 1000);
+    }
+
+    // start quiz
+    newQuestion();
+  </script>
+</body>
+</html>
