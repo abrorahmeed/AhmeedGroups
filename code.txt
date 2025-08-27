@@ -1,345 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Math Quiz — Fryza</title>
-<style>
-  :root{
-    --brand:#F4320B;
-    --brand-light:#FF6A3D;
-    --bg:#fff5f2;
-    --card:#fff;
-  }
-
-  /* Page layout */
-  body{
-    margin:0;
-    min-height:100vh;
-    background:var(--bg);
-    font-family: "Segoe UI", Arial, sans-serif;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    padding:18px;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  /* Header with Back button */
-  .topbar{
-    width:100%;
-    max-width:980px;
-    display:flex;
-    align-items:center;
-    justify-content:flex-start;
-    gap:12px;
-    margin-bottom:12px;
-  }
-
-  .back-btn{
-    -webkit-appearance:none;
-    appearance:none;
-    border:2px solid var(--brand);
-    background:#fff;
-    color:var(--brand);
-    padding:8px 14px;
-    border-radius:999px;
-    font-weight:700;
-    cursor:pointer;
-    transition:transform .18s ease, box-shadow .18s ease;
-  }
-  .back-btn:active{ transform:translateY(1px) }
-  .back-btn:hover{ box-shadow:0 6px 16px rgba(0,0,0,0.08); transform:translateY(-2px) }
-
-  /* Quiz container */
-  .quiz-wrapper{
-    width:100%;
-    max-width:500px;
-  }
-
-  .quiz-box{
-    background:var(--card);
-    padding:20px;
-    border-radius:18px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.08);
-    text-align:center;
-  }
-
-  h1{
-    margin:0 0 10px 0;
-    color:var(--brand);
-    font-size:clamp(20px,5vw,28px);
-  }
-
-  #question{
-    font-size:clamp(18px,4vw,24px);
-    font-weight:700;
-    color:#222;
-    margin-bottom:16px;
-    min-height:46px; /* prevents layout shift when feedback appears */
-  }
-
-  /* Options grid — responsive using auto-fit */
-  .options{
-    display:grid;
-    gap:12px;
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    margin-top:6px;
-  }
-
-  .option-btn{
-    background:#fff;
-    border:2px solid var(--brand);
-    color:var(--brand);
-    padding:14px;
-    font-size:18px;
-    font-weight:700;
-    border-radius:14px;
-    cursor:pointer;
-    transition:transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
-    letter-spacing:1.2px;
-    width:100%;
-  }
-
-  .option-btn:hover{
-    transform:scale(1.03);
-    box-shadow:0 8px 20px rgba(0,0,0,0.06);
-    background:#fff7f4;
-  }
-
-  .option-btn:disabled{
-    cursor:default;
-    opacity:0.9;
-    transform:none;
-    box-shadow:none;
-  }
-
-  /* Correct / wrong states */
-  .option-btn.correct{
-    background: #dff3e6;
-    border-color:#2ea45a;
-    color:#2a6f3f;
-  }
-  .option-btn.wrong{
-    background:#ffe9e9;
-    border-color:#d64545;
-    color:#8b2b2b;
-  }
-
-  /* Feedback and timer */
-  #feedback{
-    min-height:26px;
-    margin-top:14px;
-    font-weight:700;
-    font-size:16px;
-  }
-
-  .controls{
-    display:flex;
-    gap:12px;
-    justify-content:center;
-    align-items:center;
-    margin-top:14px;
-    flex-wrap:wrap;
-  }
-
-  .next-btn{
-    background: linear-gradient(135deg, var(--brand), var(--brand-light));
-    color:#fff;
-    padding:10px 18px;
-    border-radius:30px;
-    border:none;
-    font-weight:700;
-    cursor:pointer;
-    box-shadow:0 8px 20px rgba(0,0,0,0.12);
-  }
-  .next-btn:disabled{ opacity:0.6; cursor:default; box-shadow:none; transform:none; }
-
-  #timer{
-    color:var(--brand);
-    font-weight:700;
-    padding:8px 12px;
-    border-radius:10px;
-    border:2px solid rgba(244,50,11,0.08);
-    background:#fff;
-    font-size:15px;
-  }
-
-  /* small visual polish */
-  .meta-row{ display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:8px; }
-  @media (max-width:420px){
-    .option-btn{ font-size:16px; padding:12px; }
-    .options{ gap:10px; grid-template-columns: 1fr; } /* force single column on very small */
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="lesson.css">
 </head>
 <body>
-
-  <div class="topbar">
-    <button class="back-btn" onclick="goBack()" aria-label="Back to menu">← Menu</button>
-  </div>
-
-  <div class="quiz-wrapper">
-    <div class="quiz-box" role="region" aria-labelledby="title">
-      <h1 id="title">Math Quiz</h1>
-
-      <div id="question">Loading question…</div>
-
-      <div class="options" id="options" aria-live="polite"></div>
-
-      <div id="feedback" aria-atomic="true"></div>
-
-      <div class="controls">
-        <button id="nextBtn" class="next-btn" onclick="nextQuestion()" disabled>Next</button>
-        <div id="timer">Time: 10</div>
-      </div>
+    <div class="header">
+        <h1>LESSONS</h1>
     </div>
-  </div>
 
-<script>
-  // --- CONFIG ---
-  const QUESTION_TIME = 10; // seconds
-  // --- STATE ---
-  let correctAnswer = null;
-  let timer = null;
-  let timeLeft = QUESTION_TIME;
-  let answered = false;
+    <div class="accordion">
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="subjects">
+                    <div class="subject-buttons">
+                        <h3>Foundation: Basics</h3>
+                        <a href="l1" class="quiz-btn">Numbers & Counting</a>
+                        <a href="l2" class="biology-btn">Place Values</a>
+                        <a href="l3" class="coding-btn">Addition</a>
+                        <a href="l4" class="quiz-btn">Subtraction</a>
+                        <a href="l5" class="biology-btn">Multiplication</a>
+                        <a href="l6" class="coding-btn">Division</a>
+                        <a href="mathmenu.html" class="back-btn">BACK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-item">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+                <div class="subjects">
+                    <div class="subject-buttons">
+                        <h3>Fractions and Others</h3>
+                        <a href="l1" class="quiz-btn">Fractions</a>
+                        <a href="l2" class="biology-btn">Mixed Numbers</a>
+                        <a href="l3" class="coding-btn">Improper Fractions</a>
+                        <a href="l4" class="quiz-btn">Decimals</a>
+                        <a href="l5" class="biology-btn">Percentages</a>
+                        <a href="mathmenu.html" class="back-btn">BACK</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-  // Helpful utility
-  const rand = (min, max) => Math.floor(Math.random()*(max-min+1))+min;
-  const shuffle = (arr) => arr.sort(()=>Math.random()-0.5);
 
-  function goBack(){
-    // try to go back; if no history, fallback to an anchor (set your main menu URL here)
-    if(history.length>1) history.back();
-    else location.href = "#mainmenu"; // replace with actual main menu url when available
-  }
-
-  function renderOptions(options){
-    const container = document.getElementById('options');
-    container.innerHTML = '';
-    options.forEach(opt => {
-      const btn = document.createElement('button');
-      btn.className = 'option-btn';
-      btn.type = 'button';
-      btn.textContent = opt;
-      btn.disabled = false;
-      btn.onclick = () => handleAnswer(btn, opt);
-      container.appendChild(btn);
-    });
-  }
-
-  function handleAnswer(btn, selected){
-    if(answered) return; // ignore extra taps
-    answered = true;
-    clearInterval(timer);
-
-    // disable all buttons
-    document.querySelectorAll('.option-btn').forEach(b=>b.disabled=true);
-
-    if(selected === correctAnswer){
-      btn.classList.add('correct');
-      showFeedback('Correct!', 'green');
-    } else {
-      btn.classList.add('wrong');
-      // show the correct button as well
-      const all = Array.from(document.querySelectorAll('.option-btn'));
-      const correctBtn = all.find(b => Number(b.textContent) === correctAnswer);
-      if(correctBtn) correctBtn.classList.add('correct');
-      showFeedback('Wrong — the correct answer is shown', 'crimson');
-    }
-
-    // enable Next
-    document.getElementById('nextBtn').disabled = false;
-  }
-
-  function showFeedback(text, color){
-    const f = document.getElementById('feedback');
-    f.textContent = text;
-    f.style.color = color;
-  }
-
-  function startTimer(){
-    clearInterval(timer);
-    timeLeft = QUESTION_TIME;
-    document.getElementById('timer').textContent = 'Time: ' + timeLeft;
-    timer = setInterval(() => {
-      timeLeft--;
-      document.getElementById('timer').textContent = 'Time: ' + timeLeft;
-      if(timeLeft <= 0){
-        clearInterval(timer);
-        onTimeUp();
-      }
-    }, 1000);
-  }
-
-  function onTimeUp(){
-    if(answered) return;
-    answered = true;
-    // disable options
-    document.querySelectorAll('.option-btn').forEach(b=>{
-      b.disabled = true;
-      if(Number(b.textContent) === correctAnswer) b.classList.add('correct');
-    });
-    showFeedback("Time's up! The correct answer is shown", 'orange');
-    document.getElementById('nextBtn').disabled = false;
-  }
-
-  function nextQuestion(){
-    // reset
-    document.getElementById('nextBtn').disabled = true;
-    showFeedback('', '#000');
-    generateQuestion();
-  }
-
-  function generateQuestion(){
-    answered = false;
-    // generate numbers and operator (including simple division with integer result)
-    const ops = ['+','-','*'];
-    const operator = ops[rand(0, ops.length-1)];
-    let a = rand(1,12);
-    let b = rand(1,12);
-
-    // keep subtraction positive-ish
-    if(operator === '-' && a < b){ [a,b] = [b,a]; }
-
-    let correct;
-    if(operator === '+') correct = a + b;
-    else if(operator === '-') correct = a - b;
-    else correct = a * b;
-
-    correctAnswer = correct;
-    document.getElementById('question').textContent = `${a} ${operator} ${b} = ?`;
-
-    // build options: include correct and three reasonable distractors
-    const opts = new Set();
-    opts.add(correct);
-    while(opts.size < 4){
-      // generate distractors near the correct answer
-      const delta = rand(1,5);
-      const sign = Math.random() < 0.5 ? -1 : 1;
-      let candidate = correct + sign * delta;
-      // avoid negative or duplicate
-      if(candidate <= 0) candidate = Math.abs(candidate) + rand(1,3);
-      opts.add(candidate);
-    }
-    const arr = shuffle(Array.from(opts).map(n => Number(n)));
-    renderOptions(arr);
-
-    // style cleanup (remove classes)
-    document.querySelectorAll('.option-btn').forEach(b=>{
-      b.classList.remove('correct','wrong');
-    });
-
-    // start timer
-    startTimer();
-  }
-
-  // start first question on load
-  window.addEventListener('load', () => {
-    generateQuestion();
-  });
-
-</script>
+    <div class="subjects">
+        <div class="subject-buttons">
+            <h3>Foundation: Basics</h3>
+            <a href="l1" class="quiz-btn">Numbers & Counting</a>
+            <a href="l2" class="biology-btn">Place Values</a>
+            <a href="l3" class="coding-btn">Addition</a>
+            <a href="l4" class="quiz-btn">Subtraction</a>
+            <a href="l5" class="biology-btn">Multiplication</a>
+            <a href="l6" class="coding-btn">Division</a>
+            <a href="l4" class="quiz-btn">l</a>
+            <a href="l5" class="biology-btn">l</a>
+            <a href="l6" class="coding-btn">l</a>
+            <a href="mathmenu.html" class="back-btn">BACK</a>
+        </div>
+    </div>
+    <div class="disclaimer">
+        <img src="images/under-construction.png" alt="Fryza" class="disclaimer-icon">
+        <p>This site is in it's first stage. You may encounter bugs, missing features, or unfinished pages. Thanks for your patience.</p>
+    </div>
+    <script>
+        function toggleAccordion(header) {
+            const content = header.nextElementSibling;
+            const sign = header.querySelector("b");
+            
+            if (content.style.display === "block") {
+                content.style.display = "none";
+                sign.textContent = "+";
+            } else {
+                content.style.display = "block";
+                sign.textContent = "-"
+            }
+        }
+    </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    width: 100%;
+    background: linear-gradient(270deg, #0077FF, #5ca8ff, #0077FF);
+    color: white;
+    padding: 45px 0;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 34px;
+    font-weight: bold;
+}
+h3 {
+    color: #0077FF;
+    font-weight: bold;
+}
+
+.subjects {
+    text-align: center;
+    padding: 20px 20px;
+}
+
+.subject-buttons {
+    display: grid;
+    justify-content: center;
+    gap: 20px;
+}
+
+.subject-buttons {
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+    .subject-buttons {
+        grid-template-columns: repeat(2, 1fr);
+        max-width: 600px;
+        margin: 0 auto;
+    } 
+}
+
+@media (min-width: 900px) {
+    .subject-buttons {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 900px;
+    } 
+}
+
+.quiz-btn {
+    display: inline-block;
+    padding: 18px 68px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #0077FF;
+    background: #e8f3ff;
+    border: 4px solid #0077FF;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.quiz-btn:hover {
+    transform: scale(1.05);
+}
+
+.biology-btn {
+    display: inline-block;
+    padding: 18px 68px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #0077FF;
+    background: #e8f3ff;
+    border: 4px solid #0077FF;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.biology-btn:hover {
+    transform: scale(1.05);
+}
+
+.coding-btn {
+    display: inline-block;
+    padding: 18px 68px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #0077FF;
+    background: #e8f3ff;
+    border: 4px solid #0077FF;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.coding-btn:hover {
+    transform: scale(1.05);
+}
+
+.back-btn {
+    display: inline-block;
+    padding: 18px 68px;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: #F4320B;
+    background: #ffe9e4;
+    border: 4px solid #F4320B;
+    border-radius: 14px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+    transform: scale(1.05);
+}
+.disclaimer {
+        max-width: 500px;
+        width: calc(100% - 40px);
+        margin: 30px auto;
+        padding: 20px;
+        background: #ffe5b2;
+        border: 4px solid #F4A300;
+        border-radius: 16px;
+        text-align: center;
+        font-size: 15px;
+        color: #333;
+        box-sizing: border-box;
+
+    }
+.disclaimer-icon {
+        width: 50px;
+        height: auto;
+        margin-bottom: 12px;
+    }
+.disclaimer p {
+        margin: 0;
+        line-height: 1.5;
+    }
