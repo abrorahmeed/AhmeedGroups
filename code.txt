@@ -1,234 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fryza - Main Menu</title>
-    <link rel="stylesheet" href="stylemenu.css">
-</head>
-<body>
-    <a href="index.html" class="floating-back">GO BACK</a>
-    <div class="header">
-        <h1>LET'S LEARN</h1>
-    </div>
-    <div class="subjects">
-        <div class="subject-buttons">
-            <a href="mathmenu.html" class="math-btn">MATH</a>
-            <a href="biologymenu.html" class="biology-btn">BIOLOGY</a>
-            <a href="codingmenu.html" class="coding-btn">CODING</a>
-        </div>
-    </div>
-    <div class="disclaimer">
-        <img src="images/under-construction.png" alt="Fryza" class="disclaimer-icon">
-        <p>This site is in it's first stage. You may encounter bugs, missing features, or unfinished pages. Thanks for your patience.</p>
-    </div>
-    <footer class="footer">
-        <p>&copy; 2025 Fryza - All rigths reserved.</p>
-    </footer>
-</body>
-</html>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggle = document.getElementById("dark-mode-toggle");
 
-css:
-body {
-    margin: 0;
-    font-family: 'Press Start 2P', cursive;
-}
-
-.header {
-    width: 100%;
-    background: linear-gradient(270deg, #0bddf4, #0bddf4, #0bddf4);
-    color: white;
-    padding: 45px 0;
-    text-align: center;
-    border-radius: 0 0 20px 20px;
-    border: 5px solid #05aec1;
-}
-
-.header h1 {
-    margin: 0;
-    font-size: 34px;
-    font-weight: bold;
-}
-
-.floating-back {
-    text-align: center;
-    position: fixed;
-    bottom: 35px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 70%;
-    background: #0bddf4;
-    color: white;
-    padding: 12px 19px;
-    border: 4px solid #08bbcf;
-    border-radius: 50px;
-    font-weight: bold;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    z-index: 1000;
-}
-.floating-back:hover {
-    background: #5ce2f1;
-    transform: translateX(-50%) scale(1.05);
-}
-
-.content {
-    max-width: 800px;
-    margin: 40px auto;
-    padding: 0 20px;
-    text-align: center;
-}
-
-.content h2 {
-    font-size: 24px;
-    margin-bottom: 10px;
-    color: #00cfe7;
-}
-
-.subjects {
-    text-align: center;
-    padding: 20px 20px;
-}
-
-.subject-buttons {
-    display: grid;
-    justify-content: center;
-    gap: 20px;
-}
-
-.subject-buttons {
-    grid-template-columns: 1fr;
-}
-
-@media (min-width: 600px) {
-    .subject-buttons {
-        grid-template-columns: repeat(2, 1fr);
-        max-width: 600px;
-        margin: 0 auto;
-    } 
-}
-
-@media (min-width: 900px) {
-    .subject-buttons {
-        grid-template-columns: repeat(3, 1fr);
-        max-width: 900px;
-    } 
-}
-
-.math-btn {
-    display: inline-block;
-    padding: 18px 68px;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #0077FF;
-    background: #eeeaff;
-    border: 4px solid #0077FF;
-    border-radius: 14px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.math-btn:hover {
-    transform: scale(1.05);
-}
-
-.biology-btn {
-    display: inline-block;
-    padding: 18px 68px;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #28A745;
-    background: #e7ffe2;
-    border: 4px solid #28A745;
-    border-radius: 14px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.biology-btn:hover {
-    transform: scale(1.05);
-}
-
-.coding-btn {
-    display: inline-block;
-    padding: 18px 68px;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #8E44AD;
-    background: #f9e6ff;
-    border: 4px solid #8E44AD;
-    border-radius: 14px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.coding-btn:hover {
-    transform: scale(1.05);
-}
-
-.back-btn {
-    display: inline-block;
-    padding: 18px 68px;
-    font-size: 20px;
-    font-weight: 700;
-    letter-spacing: 1.5px;
-    color: #F4320B;
-    background: #ffe9e4;
-    border: 4px solid #F4320B;
-    border-radius: 14px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.back-btn:hover {
-    transform: scale(1.05);
-}
-
-.disclaimer {
-    max-width: 500px;
-    width: calc(100% - 40px);
-    margin: 30px auto;
-    padding: 20px;
-    background: #ffe5b2;
-    border: 4px solid #F4A300;
-    border-radius: 16px;
-    text-align: center;
-    font-size: 15px;
-    color: #333;
-    box-sizing: border-box;
-
-}
-.disclaimer-icon {
-    width: 50px;
-    height: auto;
-    margin-bottom: 12px;
-}
-.disclaimer p {
-    margin: 0;
-    line-height: 1.5;
-}
-
-.footer {
-    background: linear-gradient(135deg, #0bddf4, #21e8fe);
-    color: #fff;
-    padding: 18px;
-    text-align: center;
-    font-size: 15px;
-    font-weight: 500;
-    border-radius: 16px 16px 0 0;
-    margin-top: 60px;
-}
-
-.disclaimer, .footer {
-    display: block;
-}
-
-@media screen and (max-width: 768px) {
-    .disclaimer, .footer {
-        display: none;
+    // Function to apply dark mode
+    function applyDarkMode(isDark) {
+        if (isDark) {
+            document.body.classList.add("dark-mode");
+            if (toggle) toggle.textContent = "☀️"; // day icon
+        } else {
+            document.body.classList.remove("dark-mode");
+            if (toggle) toggle.textContent = "🌙"; // night icon
+        }
     }
-}
+
+    // Load from localStorage on page load
+    const darkModeStored = localStorage.getItem("darkMode") === "true";
+    applyDarkMode(darkModeStored);
+
+    // If toggle exists, add click listener
+    if (toggle) {
+        toggle.addEventListener("click", () => {
+            const isDark = !document.body.classList.contains("dark-mode");
+            applyDarkMode(isDark);
+            localStorage.setItem("darkMode", isDark);
+        });
+    }
+});
+</script>
