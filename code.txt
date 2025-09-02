@@ -1,29 +1,149 @@
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-    const toggle = document.getElementById("dark-mode-toggle");
-
-    // Function to apply dark mode
-    function applyDarkMode(isDark) {
-        if (isDark) {
-            document.body.classList.add("dark-mode");
-            if (toggle) toggle.textContent = "☀️"; // day icon
-        } else {
-            document.body.classList.remove("dark-mode");
-            if (toggle) toggle.textContent = "🌙"; // night icon
-        }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Summage</title>
+  <style>
+    /* General Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Arial, sans-serif;
     }
 
-    // Load from localStorage on page load
-    const darkModeStored = localStorage.getItem("darkMode") === "true";
-    applyDarkMode(darkModeStored);
-
-    // If toggle exists, add click listener
-    if (toggle) {
-        toggle.addEventListener("click", () => {
-            const isDark = !document.body.classList.contains("dark-mode");
-            applyDarkMode(isDark);
-            localStorage.setItem("darkMode", isDark);
-        });
+    body {
+      background: linear-gradient(to bottom right, #f8fbff, #e6f2ff);
+      color: #1a2a40;
     }
-});
-</script>
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background: #ffffffcc;
+      border-bottom: 1px solid #dbe7f5;
+    }
+
+    .header-left {
+      display: flex;
+      gap: 20px;
+      font-size: 14px;
+      color: #446b9e;
+    }
+
+    .header-center {
+      font-weight: bold;
+      font-size: 18px;
+      color: #27496d;
+    }
+
+    .header-right h1 {
+      font-size: 28px;
+      color: #1f3c88;
+    }
+
+    /* Main Content */
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 50px;
+      padding: 60px 20px;
+      flex-wrap: wrap;
+    }
+
+    .main-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .main-buttons button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #3f72af;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .main-buttons button:hover {
+      background: #2e5d8a;
+    }
+
+    .main-image img {
+      max-width: 400px;
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Tablet Styles */
+    @media (max-width: 992px) {
+      .header-left {
+        display: none;
+      }
+      .header-right {
+        display: none;
+      }
+      .header-center {
+        font-size: 20px;
+      }
+      main {
+        flex-direction: column;
+        text-align: center;
+      }
+      .main-buttons {
+        align-items: center;
+      }
+    }
+
+    /* Mobile Styles */
+    @media (max-width: 600px) {
+      header {
+        display: none;
+      }
+      main {
+        flex-direction: column;
+        padding-top: 40px;
+      }
+      .main-buttons button {
+        width: 80%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="header-left">
+      <span>About Us</span>
+      <span>Terms</span>
+      <span>Contact</span>
+    </div>
+    <div class="header-center">Education without barriers</div>
+    <div class="header-right"><h1>Summage</h1></div>
+  </header>
+
+  <!-- Main Section -->
+  <main>
+    <div class="main-buttons">
+      <button>Begin Studying</button>
+      <button>About Summage</button>
+      <button>Summage Blogs</button>
+    </div>
+    <div class="main-image">
+      <img src="https://source.unsplash.com/600x400/?education,books" alt="Education Image">
+    </div>
+  </main>
+
+</body>
+</html>
