@@ -13,9 +13,12 @@
     }
 
     body {
-      background: linear-gradient(135deg, #f9fcff, #eef6ff);
+      min-height: 100vh;
+      background: linear-gradient(135deg, #f3f9ff, #e6f0ff);
+      background-attachment: fixed;
       color: #1a2a40;
-      line-height: 1.6;
+      display: flex;
+      flex-direction: column;
     }
 
     /* Header */
@@ -26,16 +29,16 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: rgba(31, 60, 136, 0.9);
+      background: rgba(31, 60, 136, 0.95);
       color: white;
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(6px);
       z-index: 1000;
     }
 
     .header-left {
       display: flex;
       gap: 1.5rem;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       opacity: 0.9;
     }
 
@@ -51,19 +54,19 @@
     }
 
     .header-right h1 {
-      font-size: 1.6rem;
+      font-size: 1.7rem;
       font-weight: 700;
       letter-spacing: 1px;
     }
 
     /* Main Layout */
     main {
+      flex: 1;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 2rem;
-      padding: 4rem 8%;
-      min-height: 90vh;
+      gap: 3rem;
+      padding: 5vh 8%;
     }
 
     .left-side {
@@ -71,54 +74,46 @@
       display: flex;
       flex-direction: column;
       align-items: flex-start;
-      gap: 1.5rem;
+      gap: 2rem;
     }
 
     .left-side h1 {
-      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-size: clamp(2.5rem, 6vw, 5rem);
       color: #1f3c88;
-      font-weight: 700;
+      font-weight: 800;
       letter-spacing: -1px;
     }
 
     .left-side img {
       width: 100%;
-      max-width: 500px;
-      border-radius: 18px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-      transition: transform 0.4s ease;
-    }
-
-    .left-side img:hover {
-      transform: scale(1.02);
+      max-width: 600px;
+      border-radius: 0; /* clean, no style */
     }
 
     .right-side {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 1.2rem;
+      gap: 1.5rem;
       align-items: center;
     }
 
     .right-side button {
-      padding: clamp(0.8rem, 1.2vw, 1.2rem) clamp(1.5rem, 2vw, 2.2rem);
-      font-size: clamp(1rem, 1.2vw, 1.3rem);
-      font-weight: 500;
+      padding: clamp(1rem, 1.5vw, 1.5rem) clamp(2rem, 3vw, 3rem);
+      font-size: clamp(1.2rem, 1.5vw, 1.6rem);
+      font-weight: 600;
       border: none;
       border-radius: 50px;
       background: linear-gradient(135deg, #3f72af, #345fa6);
       color: white;
       cursor: pointer;
-      width: clamp(200px, 60%, 280px);
-      box-shadow: 0 4px 12px rgba(63, 114, 175, 0.3);
+      width: clamp(220px, 70%, 320px);
       transition: all 0.3s ease;
     }
 
     .right-side button:hover {
       background: linear-gradient(135deg, #345fa6, #2c4f8c);
       transform: translateY(-2px);
-      box-shadow: 0 6px 16px rgba(63, 114, 175, 0.4);
     }
 
     /* Tablet */
@@ -133,16 +128,17 @@
       main {
         flex-direction: column;
         text-align: center;
-        padding: 3rem 5%;
+        gap: 3rem;
+        padding: 6vh 5%;
       }
       .left-side, .right-side {
         align-items: center;
       }
       .left-side h1 {
-        font-size: 2.2rem;
+        font-size: clamp(2rem, 6vw, 3rem);
       }
       .left-side img {
-        max-width: 400px;
+        max-width: 450px;
       }
     }
 
@@ -152,10 +148,10 @@
         display: none;
       }
       main {
-        padding: 2rem 1.5rem;
+        padding: 4vh 1.5rem;
       }
       .left-side h1 {
-        font-size: 1.8rem;
+        font-size: clamp(1.8rem, 8vw, 2.5rem);
       }
       .left-side img {
         max-width: 100%;
@@ -183,7 +179,7 @@
   <main>
     <div class="left-side">
       <h1>Summage</h1>
-      <img src="https://source.unsplash.com/800x500/?education,books,learning" alt="Education Image">
+      <img src="https://source.unsplash.com/900x600/?education,books,learning" alt="Education Image">
     </div>
     <div class="right-side">
       <button>Begin Studying</button>
