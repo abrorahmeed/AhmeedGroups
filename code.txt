@@ -9,82 +9,105 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Segoe UI", Arial, sans-serif;
+      font-family: "Poppins", "Segoe UI", Arial, sans-serif;
     }
 
     body {
-      background: linear-gradient(to bottom right, #f9fcff, #eaf3ff);
+      background: linear-gradient(135deg, #f9fcff, #eef6ff);
       color: #1a2a40;
       text-align: center;
+      line-height: 1.6;
     }
 
     /* Header */
     header {
+      position: sticky;
+      top: 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 30px;
-      background: #1f3c88; /* dark soft blue */
+      padding: 15px 40px;
+      background: rgba(31, 60, 136, 0.9); /* soft dark blue */
       color: white;
+      backdrop-filter: blur(8px);
+      z-index: 1000;
     }
 
     .header-left {
       display: flex;
-      gap: 15px;
+      gap: 20px;
       font-size: 14px;
+      opacity: 0.9;
+    }
+
+    .header-left span:hover {
+      text-decoration: underline;
+      cursor: pointer;
     }
 
     .header-center {
       font-size: 16px;
       font-weight: 500;
+      letter-spacing: 0.5px;
     }
 
     .header-right h1 {
-      font-size: 22px;
-      font-weight: bold;
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: 1px;
     }
 
     /* Main Section */
     main {
-      padding: 50px 20px;
+      padding: 70px 20px;
     }
 
     main h1 {
-      font-size: 40px;
+      font-size: 48px;
       color: #1f3c88;
-      margin-bottom: 20px;
+      margin-bottom: 25px;
+      font-weight: 700;
+      letter-spacing: -1px;
     }
 
     .main-image img {
       width: 100%;
-      max-width: 500px;
-      border-radius: 12px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
-      margin-bottom: 30px;
+      max-width: 600px;
+      border-radius: 18px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+      margin-bottom: 40px;
+      transition: transform 0.4s ease;
+    }
+
+    .main-image img:hover {
+      transform: scale(1.02);
     }
 
     .main-buttons {
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 18px;
       align-items: center;
     }
 
     .main-buttons button {
-      padding: 14px 24px;
-      font-size: 16px;
+      padding: 14px 28px;
+      font-size: 17px;
+      font-weight: 500;
       border: none;
-      border-radius: 8px;
-      background: #3f72af;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #3f72af, #345fa6);
       color: white;
       cursor: pointer;
-      width: 220px;
-      transition: 0.3s ease;
+      width: 240px;
+      box-shadow: 0 4px 12px rgba(63, 114, 175, 0.3);
+      transition: all 0.3s ease;
     }
 
     .main-buttons button:hover {
-      background: #2e5d8a;
+      background: linear-gradient(135deg, #345fa6, #2c4f8c);
       transform: translateY(-2px);
+      box-shadow: 0 6px 16px rgba(63, 114, 175, 0.4);
     }
 
     /* Tablet */
@@ -97,7 +120,7 @@
         font-size: 18px;
       }
       main h1 {
-        font-size: 34px;
+        font-size: 38px;
       }
     }
 
@@ -107,10 +130,10 @@
         display: none;
       }
       main h1 {
-        font-size: 28px;
+        font-size: 30px;
       }
       .main-buttons button {
-        width: 80%;
+        width: 85%;
       }
     }
   </style>
@@ -132,7 +155,7 @@
   <main>
     <h1>Summage</h1>
     <div class="main-image">
-      <img src="https://source.unsplash.com/800x500/?education,learning" alt="Education Image">
+      <img src="https://source.unsplash.com/800x500/?education,books,learning" alt="Education Image">
     </div>
     <div class="main-buttons">
       <button>Begin Studying</button>
