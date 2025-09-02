@@ -15,7 +15,6 @@
     body {
       background: linear-gradient(135deg, #f9fcff, #eef6ff);
       color: #1a2a40;
-      text-align: center;
       line-height: 1.6;
     }
 
@@ -26,8 +25,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 40px;
-      background: rgba(31, 60, 136, 0.9); /* soft dark blue */
+      padding: 1rem 2rem;
+      background: rgba(31, 60, 136, 0.9);
       color: white;
       backdrop-filter: blur(8px);
       z-index: 1000;
@@ -35,8 +34,8 @@
 
     .header-left {
       display: flex;
-      gap: 20px;
-      font-size: 14px;
+      gap: 1.5rem;
+      font-size: 0.9rem;
       opacity: 0.9;
     }
 
@@ -46,65 +45,77 @@
     }
 
     .header-center {
-      font-size: 16px;
+      font-size: 1rem;
       font-weight: 500;
       letter-spacing: 0.5px;
     }
 
     .header-right h1 {
-      font-size: 26px;
+      font-size: 1.6rem;
       font-weight: 700;
       letter-spacing: 1px;
     }
 
-    /* Main Section */
+    /* Main Layout */
     main {
-      padding: 70px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 2rem;
+      padding: 4rem 8%;
+      min-height: 90vh;
     }
 
-    main h1 {
-      font-size: 48px;
+    .left-side {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+
+    .left-side h1 {
+      font-size: clamp(2rem, 4vw, 3.5rem);
       color: #1f3c88;
-      margin-bottom: 25px;
       font-weight: 700;
       letter-spacing: -1px;
     }
 
-    .main-image img {
+    .left-side img {
       width: 100%;
-      max-width: 600px;
+      max-width: 500px;
       border-radius: 18px;
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-      margin-bottom: 40px;
       transition: transform 0.4s ease;
     }
 
-    .main-image img:hover {
+    .left-side img:hover {
       transform: scale(1.02);
     }
 
-    .main-buttons {
+    .right-side {
+      flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 1.2rem;
       align-items: center;
     }
 
-    .main-buttons button {
-      padding: 14px 28px;
-      font-size: 17px;
+    .right-side button {
+      padding: clamp(0.8rem, 1.2vw, 1.2rem) clamp(1.5rem, 2vw, 2.2rem);
+      font-size: clamp(1rem, 1.2vw, 1.3rem);
       font-weight: 500;
       border: none;
       border-radius: 50px;
       background: linear-gradient(135deg, #3f72af, #345fa6);
       color: white;
       cursor: pointer;
-      width: 240px;
+      width: clamp(200px, 60%, 280px);
       box-shadow: 0 4px 12px rgba(63, 114, 175, 0.3);
       transition: all 0.3s ease;
     }
 
-    .main-buttons button:hover {
+    .right-side button:hover {
       background: linear-gradient(135deg, #345fa6, #2c4f8c);
       transform: translateY(-2px);
       box-shadow: 0 6px 16px rgba(63, 114, 175, 0.4);
@@ -112,15 +123,26 @@
 
     /* Tablet */
     @media (max-width: 992px) {
-      .header-left, .header-right {
+      header .header-left, header .header-right {
         display: none;
       }
-      .header-center {
+      header .header-center {
         margin: 0 auto;
-        font-size: 18px;
+        font-size: 1.1rem;
       }
-      main h1 {
-        font-size: 38px;
+      main {
+        flex-direction: column;
+        text-align: center;
+        padding: 3rem 5%;
+      }
+      .left-side, .right-side {
+        align-items: center;
+      }
+      .left-side h1 {
+        font-size: 2.2rem;
+      }
+      .left-side img {
+        max-width: 400px;
       }
     }
 
@@ -129,11 +151,17 @@
       header {
         display: none;
       }
-      main h1 {
-        font-size: 30px;
+      main {
+        padding: 2rem 1.5rem;
       }
-      .main-buttons button {
-        width: 85%;
+      .left-side h1 {
+        font-size: 1.8rem;
+      }
+      .left-side img {
+        max-width: 100%;
+      }
+      .right-side button {
+        width: 100%;
       }
     }
   </style>
@@ -153,11 +181,11 @@
 
   <!-- Main -->
   <main>
-    <h1>Summage</h1>
-    <div class="main-image">
+    <div class="left-side">
+      <h1>Summage</h1>
       <img src="https://source.unsplash.com/800x500/?education,books,learning" alt="Education Image">
     </div>
-    <div class="main-buttons">
+    <div class="right-side">
       <button>Begin Studying</button>
       <button>About Summage</button>
       <button>Summage Blogs</button>
